@@ -49,4 +49,13 @@ class Film
     WHERE id = #{ @id }"
     SqlRunner.run(sql)
   end
+
+  def how_many_customers()
+    sql = "SELECT customers.* FROM customers
+    INNER JOIN tickets ON
+    tickets.customers_id = customers.id
+    WHERE films_id = #{@id};"
+    return Customer.get_many(sql).count
+  end
+
 end

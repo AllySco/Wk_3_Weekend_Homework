@@ -44,5 +44,4 @@ class Ticket
     customer = SqlRunner.run(sql).first()
     return Customer.new(customer)
   end
-
 end
