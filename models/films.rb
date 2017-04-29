@@ -37,4 +37,16 @@ class Film
     WHERE films_id = #{@id};"
     return Customer.get_many(sql)
   end
+
+  def update()
+    sql = "
+    UPDATE films SET (
+    title,
+    price
+    ) = (
+    '#{ @title }',
+    #{ @price })
+    WHERE id = #{ @id }"
+    SqlRunner.run(sql)
+  end
 end

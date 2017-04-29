@@ -17,7 +17,7 @@ class Customer
     sql = "INSERT INTO customers (name, funds
     ) VALUES (
     '#{ @name }', #{@funds})
-     RETURNING id;"
+    RETURNING id;"
     customer = SqlRunner.run( sql ).first
     @id = customer['id'].to_i
   end
@@ -53,5 +53,17 @@ class Customer
   def Ticket.get_many(sql)
     tickets = SqlRunner.run(sql)
     return tickets.map { |ticket| Ticket.new(ticket) }
+  end
+
+  def update()
+    sql = "
+    UPDATE customers SET (
+    name,
+    funds
+    ) = (
+    '#{ @name }',
+    #{ @funds })
+    WHERE id = #{ @id }"
+    return SqlRunner.run(sql)
   end
 end

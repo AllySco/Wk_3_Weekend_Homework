@@ -31,12 +31,12 @@ class Ticket
     SqlRunner.run(sql)
   end
 
- def film()
+  def film()
     sql = "SELECT * FROM films
     WHERE id = #{@films_id};"
     films = SqlRunner.run(sql).first()
     return Film.new(films)
- end
+  end
 
   def customer()
     sql = "SELECT * FROM customers
@@ -44,4 +44,5 @@ class Ticket
     customer = SqlRunner.run(sql).first()
     return Customer.new(customer)
   end
+
 end
